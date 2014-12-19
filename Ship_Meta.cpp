@@ -3,10 +3,16 @@
 
 using namespace std;
 
+Ship::Ship() {
+	sunk = false;
+	vert = false;
+	len = 0;
+}
 
-Ship::Ship(bool is_vert) {
+Ship::Ship(bool is_vert, int length) {
 	sunk = false;
 	vert = is_vert;
+	len = length;
 }
 
 

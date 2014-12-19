@@ -10,7 +10,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-	// DESTROY ALL HUMANS
 	delete human;
 	delete AI;
 }

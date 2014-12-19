@@ -1,9 +1,10 @@
 CXX = clang++
 FLAGS = -Wall -g3 -pedantic
 
-battleship: main.cpp Ship_Meta.h Ships.h Game.h Player.h \
-		Ship_Meta.cpp Ships.cpp Game.cpp Player.cpp
-	${CXX} ${FLAGS} -o battleship main.cpp Ships.cpp Game.cpp Player.cpp 
+battleship: main.cpp Ship_Meta.h Game.h Player.h \
+		Ship_Meta.cpp Game.cpp Player.cpp
+	${CXX} ${FLAGS} -o battleship main.cpp Game.cpp Player.cpp \
+				Ship_Meta.cpp 
 
 clean: 
 	rm -f battleship *.o

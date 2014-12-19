@@ -20,8 +20,6 @@ private:
 	
  	Player *human;
   	Player *AI;
- 
-	
 };
 
 #endif
