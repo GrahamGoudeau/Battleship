@@ -13,6 +13,7 @@ public:
 private:
 	int row;
 	int col;
+	int len;
 
 	// true if the ship runs vertically
 	bool vert;

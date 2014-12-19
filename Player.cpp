@@ -29,16 +29,5 @@ void Player::init_board() {
 }
 
 void Player::print_boards() {
-	for (int i = 0; i < 2*BOARD_DIM; i++) {
-		if (i == BOARD_DIM + 1) {
-			for (int x=0; x<5;x++) cout << " ";
-		}
 
-		for (int q = 0; q < 2*BOARD_DIM; q++) {
-			if (i < BOARD_DIM) 
-				cout << board[i][q];
-			else cout << guess_board[i][q];			
-		}
-		cout << endl;
-	}
 }
