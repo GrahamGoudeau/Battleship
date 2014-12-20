@@ -3,6 +3,11 @@
 
 using namespace std;
 
+Player::Player() {
+	comp_player = false;
+	is_defeated = false;
+}
+
 Player::Player(bool is_AI) {
 	comp_player = is_AI;
 	is_defeated = false;
@@ -17,8 +22,9 @@ void Player::populate_ships() {
 		for (int ship=0; ship<NUM_SHIPS; ship++) {
 			set_ship(ship);
 			update_board(ship);
+			
+			print_boards();
 		}
-		print_boards();
 	}
 }
 

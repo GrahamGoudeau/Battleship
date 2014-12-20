@@ -4,29 +4,20 @@
 
 using namespace std;
 
-Game::Game() {
- 	//human = new Player(false);
- 	//AI = new Player(true);
-}
-
-Game::~Game() {
-	delete human;
-	delete AI;
-}
 
 void Game::play() {
 	bool playing = true;
 
 	while (playing) {
-		human = new Player(false);
-		AI = new Player(true);
+		human = Player(false);
+		AI = Player(true);
 		//while (!human->defeated() && !AI->defeated()) {
 			// STUFF AND THINGS
 		//}
-		if (human->defeated()) {
+		if (human.defeated()) {
 			cout << "You have lost...\n";
 		}
-		else if (AI->defeated()){
+		else if (AI.defeated()){
 			cout << "You have won!...\n";
 		}
 

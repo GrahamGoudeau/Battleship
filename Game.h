@@ -11,15 +11,13 @@
 
 class Game {
 public:
-	Game();
-	~Game();
 	void play();
 
 private:
 	bool play_again();
 	
- 	Player *human;
-  	Player *AI;
+ 	Player human;
+  	Player AI;
 };
 
 #endif

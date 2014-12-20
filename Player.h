@@ -27,6 +27,7 @@ enum ship_t {
 class Player {
 
 public:
+	Player();
 	Player(bool is_AI);
 	
 	void take_turn();
