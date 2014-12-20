@@ -14,6 +14,7 @@ public:
 	int get_col() {return col;}
 	int get_len() {return len;}
 	bool is_sunk() {return sunk;}
+	void set_sunk() {sunk = true;}
 	bool is_vert() {return vert;}
 private:
 	int row;
