@@ -37,6 +37,7 @@ private:
 	void populate_ships();
 	void set_ship(int cur_ship);
 	void init_board();
+	void update_board(int ship);
 	void print_boards();
 	std::string get_ship_name(int ship);
 	int get_ship_row();

@@ -5,8 +5,8 @@
 using namespace std;
 
 Game::Game() {
- 	human = new Player(false);
- 	AI = new Player(true);
+ 	//human = new Player(false);
+ 	//AI = new Player(true);
 }
 
 Game::~Game() {
@@ -18,6 +18,8 @@ void Game::play() {
 	bool playing = true;
 
 	while (playing) {
+		human = new Player(false);
+		AI = new Player(true);
 		//while (!human->defeated() && !AI->defeated()) {
 			// STUFF AND THINGS
 		//}

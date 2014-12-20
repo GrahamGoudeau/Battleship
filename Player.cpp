@@ -14,13 +14,32 @@ Player::Player(bool is_AI) {
 
 void Player::populate_ships() {
 	if (!comp_player) {
-		for (int i=0; i<NUM_SHIPS; i++) {
-			set_ship(i);
+		for (int ship=0; ship<NUM_SHIPS; ship++) {
+			set_ship(ship);
+			update_board(ship);
 		}
+		print_boards();
 	}
-	print_boards();
 }
 
+void Player::update_board(int ship) {
+	Ship new_ship = ship_list[ship];
+	bool vert = new_ship.is_vert();
+	int row = new_ship.get_row();
+	int col = new_ship.get_col();
+
+	string name = get_ship_name(ship);
+	char marker = name[0];
+
+	if (vert) {
+		for (int i=0; i < new_ship.get_len(); i++)
+			board[row+i][col] = marker;
+	}
+	else {
+		for (int i=0; i < new_ship.get_len(); i++)
+			board[row][col+i] = marker;
+	}
+}
 
 void Player::set_ship(int cur_ship) {
 	string ship_name = get_ship_name(cur_ship);
@@ -32,7 +51,7 @@ void Player::set_ship(int cur_ship) {
 		row = get_ship_row();
 		col = get_ship_col();
 		if (!is_valid_placement(cur_ship, vert, row, col))
-			cout << "INVALID PLACEMENT\n\n";
+			cout << "\nINVALID PLACEMENT\n\n";
 	} while (!is_valid_placement(cur_ship, vert, row, col));
 
 	switch (cur_ship) {
@@ -170,9 +189,30 @@ bool Player::in_bounds(int row, int col) {
 }
 
 void Player::print_boards() {
+	cout << "\nYour own board:";
+	cout << "\n  ";
+	for (int i=0; i<BOARD_DIM; i++)
+		cout << i+1;
+	cout << "\n";
 	for (int i=0; i<BOARD_DIM; i++) {
+		if (i+1 < 10) cout << i+1 << " ";
+		else cout << i+1;
 		for (int q=0; q<BOARD_DIM; q++) {
 			cout << board[i][q];
+		}
+		cout << endl;
+	}
+
+	cout << "\nYour guesses:";
+	cout << "\n  ";
+	for (int i=0; i<BOARD_DIM; i++)
+		cout << i+1;
+	cout << "\n";
+	for (int i=0; i<BOARD_DIM; i++) {
+		if (i+1 < 10) cout << i+1 << " ";
+		else cout << i+1;
+		for (int q=0; q<BOARD_DIM; q++) {
+			cout << guess_board[i][q];
 		}
 		cout << endl;
 	}

@@ -12,7 +12,9 @@ public:
 
 	int get_row() {return row;}
 	int get_col() {return col;}
-	bool is_sunk() {return sunk;};
+	int get_len() {return len;}
+	bool is_sunk() {return sunk;}
+	bool is_vert() {return vert;}
 private:
 	int row;
 	int col;
