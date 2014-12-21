@@ -42,6 +42,7 @@ private:
 	void init_board();
 	void update_board(int ship);
 	void print_boards();
+	int get_ship(char marker);
 	std::string get_ship_name(int ship);
 	int get_ship_row();
 	int get_ship_col();

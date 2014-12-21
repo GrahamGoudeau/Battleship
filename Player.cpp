@@ -105,6 +105,25 @@ void Player::init_board() {
 	}
 }
 
+
+int Player::get_ship(char marker) {
+	switch (marker) {
+		case 'd':
+			return DESTROYER;
+		case 'b':
+			return BATTLESHIP;
+		case 's':
+			return SUBMARINE;
+		case 'a':
+			return AIRCRAFT_CAR;
+		case 'p':
+			return PATROL_BOAT;
+		default:
+			return 0;
+	}
+}
+
+
 string Player::get_ship_name(int ship) {
 	switch (ship) {
 		case DESTROYER:
