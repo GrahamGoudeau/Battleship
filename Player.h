@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include "Ship_Meta.h"
+#include <stdlib.h>
+#include <time.h>
 
 const int BOARD_DIM 	= 10;
 const int NUM_SHIPS 	= 5;

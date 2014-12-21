@@ -6,6 +6,7 @@ using namespace std;
 Player::Player() {
 	comp_player = false;
 	is_defeated = false;
+	srand(time(NULL));
 }
 
 Player::Player(bool is_AI) {
@@ -18,13 +19,12 @@ Player::Player(bool is_AI) {
 }
 
 void Player::populate_ships() {
-	if (!comp_player) {
-		for (int ship=0; ship<NUM_SHIPS; ship++) {
-			set_ship(ship);
-			update_board(ship);
-			
-			print_boards();
-		}
+	for (int ship=0; ship<NUM_SHIPS; ship++) {
+		set_ship(ship);
+		update_board(ship);
+
+		//if (!comp_player) print_boards();
+		print_boards();
 	}
 }
 
@@ -49,14 +49,15 @@ void Player::update_board(int ship) {
 
 void Player::set_ship(int cur_ship) {
 	string ship_name = get_ship_name(cur_ship);
-	cout << "Setting the " << ship_name << ":\n";
+	if (!comp_player) cout << "Setting the " << ship_name << ":\n";
 	bool vert;
 	int row, col;
 	do {
 		vert = ship_vertical();
 		row = get_ship_row();
 		col = get_ship_col();
-		if (!is_valid_placement(cur_ship, vert, row, col))
+		if (!is_valid_placement(cur_ship, vert, row, col) &&
+			!comp_player)
 			cout << "\nINVALID PLACEMENT\n\n";
 	} while (!is_valid_placement(cur_ship, vert, row, col));
 
@@ -128,34 +129,43 @@ string Player::get_ship_name(int ship) {
 }
 
 int Player::get_ship_row() {
-	int row;
-	do {
-		cout << "Row: ";
-		cin >> row;
-	} while (row < 1 || row >= BOARD_DIM+1);
-
-	return row - 1;
+	if (!comp_player) {
+		int row;
+		do {
+			cout << "Row: ";
+			cin >> row;
+		} while (row < 1 || row >= BOARD_DIM+1);
+		
+		return row - 1;
+	}
+	else return rand() % BOARD_DIM;
 }
 
 int Player::get_ship_col() {
-	int col;
-	do {
-		cout << "Col: ";
-		cin >> col;
-	} while (col < 1 || col >= BOARD_DIM+1);
-	
-	return col - 1;
+	if (!comp_player) {
+		int col;
+		do {
+			cout << "Col: ";
+			cin >> col;
+		} while (col < 1 || col >= BOARD_DIM+1);
+
+		return col - 1;
+	}
+	else return rand() % BOARD_DIM;
 }
 
 bool Player::ship_vertical() {
-	string response;
-	do {
-		cout << "Is this ship  placed vertically?\n";
-		cout << "    ('y' for vertical, 'n' for horizontal)\n";
-		cin >> response;
-	} while (response != "y" && response != "n");
+	if (!comp_player) {
+		string response;
+		do {
+			cout << "Is this ship  placed vertically?\n";
+			cout << "    ('y' for vertical, 'n' for horizontal)\n";
+			cin >> response;
+		} while (response != "y" && response != "n");
 
-	return response == "y" || response == "Y";	
+		return response == "y" || response == "Y";	
+	}
+	else return (rand() % 100) < 50; // 50/50 chance
 }
 
 bool Player::is_valid_placement(int ship, bool vert, int row, int col) {
@@ -186,12 +196,16 @@ bool Player::is_valid_placement(int ship, bool vert, int row, int col) {
 	if (vert && !in_bounds(row+modifier, col)) return false;
 	else if (!vert && !in_bounds(row, col+modifier)) return false;
 	
+	for (int i=0; i<modifier; i++) {
+		if (vert && board[row+i][col] != EMPTY_POS) return false;
+		else if (!vert && board[row][col+i] != EMPTY_POS) return false;
+	}
 	return true;
 }
 
 bool Player::in_bounds(int row, int col) {
 	return row >= 0 && row < BOARD_DIM &&
-		col >= 0 && col < BOARD_DIM;
+               col >= 0 && col < BOARD_DIM;
 }
 
 void Player::print_boards() {
