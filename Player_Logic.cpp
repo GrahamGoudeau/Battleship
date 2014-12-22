@@ -48,6 +48,12 @@ void Player::human_turn(Player &player2) {
 
 void Player::AI_turn(Player &player2) {
 	cerr << "AI turn\n";
+	int *row_p, *col_p;
+	build_probability(row_p, col_p);
+}
+
+void Player::build_probability(int *row_p, int *col_p) {
+
 }
 
 bool Player::successful_hit(Player &player2, int row, int col) {

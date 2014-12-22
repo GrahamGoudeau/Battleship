@@ -215,6 +215,7 @@ bool Player::is_valid_placement(int ship, bool vert, int row, int col) {
 		if (vert && board[row+i][col] != EMPTY_POS) return false;
 		else if (!vert && board[row][col+i] != EMPTY_POS) return false;
 	}
+
 	return true;
 }
 

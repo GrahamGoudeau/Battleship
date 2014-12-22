@@ -54,6 +54,7 @@ private:
 
 	void human_turn(Player &player2);
 	void AI_turn(Player &player2);
+	void build_probability(int *row_p, int *col_p);
 
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);
