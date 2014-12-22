@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include <vector>
-#include "Ship_Meta.h"
 #include <stdlib.h>
 #include <time.h>
+#include "Ship_Meta.h"
 
 const int BOARD_DIM 	= 10;
 const int NUM_SHIPS 	= 5;
@@ -32,7 +32,7 @@ public:
 	Player();
 	Player(bool is_AI);
 	
-	void take_turn();
+	void take_turn(Player player2);
 	bool is_hit(int x, int y);
 	bool defeated() {return is_defeated;}
 
@@ -49,6 +49,8 @@ private:
 	bool ship_vertical();
 	bool is_valid_placement(int ship, bool vert, int row, int col);
 	bool in_bounds(int row, int col);
+
+	bool successful_hit(Player player2, int row, int col);	
 
 	bool comp_player;
 	bool is_defeated;

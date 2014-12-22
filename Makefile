@@ -15,13 +15,16 @@ main.o: main.cpp
 Ship.o: Ship_Meta.h Ship_Meta.cpp
 	${CXX} ${FLAGS} Ship_Meta.cpp -o $@
 
-Player.o: Player.h Player_Setup.cpp
-	${CXX} ${FLAGS} Player_Setup.cpp -o $@
+Setup.o: Player.h Player_Setup.cpp 
+	${CXX} ${FLAGS} Player_Setup.cpp -o $@ 
+
+Logic.o: Player.h Player_Logic.cpp
+	${CXX} ${FLAGS} Player_Logic.cpp -o $@
 
 Game.o: Game.h Game.cpp
 	${CXX} ${FLAGS} Game.cpp -o $@
 
-battleship: main.o Ship.o Player.o Game.o
+battleship: main.o Ship.o Setup.o Logic.o Game.o
 	${CXX} $^ -o $@
 
 clean: 

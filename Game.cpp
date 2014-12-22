@@ -13,6 +13,7 @@ void Game::play() {
 		//while (!human->defeated() && !AI->defeated()) {
 			// STUFF AND THINGS
 		//}
+		while (1) human.take_turn(AI);
 		if (human.defeated()) {
 			cout << "You have lost...\n";
 		}
