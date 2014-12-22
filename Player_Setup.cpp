@@ -13,6 +13,7 @@ Player::Player(bool is_AI) {
 	comp_player = is_AI;
 	is_defeated = false;
 	ship_list.resize(NUM_SHIPS);
+	srand(time(NULL));
 
 	init_board();
 	populate_ships();
