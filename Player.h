@@ -52,6 +52,9 @@ private:
 	bool is_valid_placement(int ship, bool vert, int row, int col);
 	bool in_bounds(int row, int col);
 
+	void human_turn(Player &player2);
+	void AI_turn(Player &player2);
+
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);
 	void update_guess(bool hit, int row, int col);
