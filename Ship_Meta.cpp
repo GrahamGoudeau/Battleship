@@ -19,7 +19,6 @@ Ship::Ship(bool is_vert, int length) {
 
 void Ship::hit() {
 	hp--;
-	cerr << "Ship::hit() - new hp = " << hp << endl;
 	sunk = (hp == 0);
 }
 void Ship::place_ship(int new_row, int new_col) {

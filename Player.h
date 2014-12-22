@@ -10,6 +10,8 @@
 const int BOARD_DIM 	= 10;
 const int NUM_SHIPS 	= 5;
 const char EMPTY_POS 	= '_';
+const char HIT		= 'X';
+const char MISS		= 'O';
 
 const int DESTROYER_LEN 	= 3;
 const int BATTLESHIP_LEN 	= 4;
@@ -32,7 +34,7 @@ public:
 	Player();
 	Player(bool is_AI);
 	
-	void take_turn(Player player2);
+	void take_turn(Player &player2);
 	bool is_hit(int x, int y);
 	bool defeated() {return is_defeated;}
 
@@ -50,7 +52,9 @@ private:
 	bool is_valid_placement(int ship, bool vert, int row, int col);
 	bool in_bounds(int row, int col);
 
-	bool successful_hit(Player player2, int row, int col);	
+	bool successful_hit(Player &player2, int row, int col);	
+	void update_own_hit(int row, int col);
+	void update_guess(bool hit, int row, int col);
 
 	bool comp_player;
 	bool is_defeated;
