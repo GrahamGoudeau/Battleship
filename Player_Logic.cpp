@@ -26,15 +26,15 @@ void Player::take_turn(Player &player2) {
 			char marker = player2.board[row][col];
 			int index = get_ship(marker);
 			string name = get_ship_name(index);
-			if (!comp_player) {
+			if (!comp_player) 
 				cout << "You sunk the " << name << "!\n";
-				sleep(1);
-			}
 		}
 		player2.update_own_hit(row, col);
 	}
 	else if (!comp_player) 
 		cout << "Miss!\n";
+
+	sleep(1);		
 
 	update_guess(hit, row, col);
 	player2.update_defeated();
@@ -55,7 +55,7 @@ void Player::update_own_hit(int row, int col) {
 void Player::update_guess(bool hit, int row, int col) {
 	if (hit)
 		guess_board[row][col] = HIT;
-	else
+	else if (guess_board[row][col] == EMPTY_POS)
 		guess_board[row][col] = MISS;
 }
 

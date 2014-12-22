@@ -30,4 +30,10 @@ battleship: main.o Ship.o Setup.o Logic.o Game.o
 clean: 
 	${RM} battleship *.o
 
-rebuild: clean battleship
+rebuild: print_clean clean battleship print_done
+
+print_clean:
+	${info Updating build...}	
+
+print_done:
+	${info Done rebuilding...}
