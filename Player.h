@@ -55,6 +55,7 @@ private:
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);
 	void update_guess(bool hit, int row, int col);
+	void update_defeated();
 
 	bool comp_player;
 	bool is_defeated;

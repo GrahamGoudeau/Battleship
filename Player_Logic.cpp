@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include "Player.h"
 
 using namespace std;
@@ -25,8 +26,10 @@ void Player::take_turn(Player &player2) {
 			char marker = player2.board[row][col];
 			int index = get_ship(marker);
 			string name = get_ship_name(index);
-			if (!comp_player) 
-				cout << "You sunk the " << name << endl;
+			if (!comp_player) {
+				cout << "You sunk the " << name << "!\n";
+				sleep(1);
+			}
 		}
 		player2.update_own_hit(row, col);
 	}
@@ -34,6 +37,7 @@ void Player::take_turn(Player &player2) {
 		cout << "Miss!\n";
 
 	update_guess(hit, row, col);
+	player2.update_defeated();
 }
 
 bool Player::successful_hit(Player &player2, int row, int col) {
@@ -53,4 +57,15 @@ void Player::update_guess(bool hit, int row, int col) {
 		guess_board[row][col] = HIT;
 	else
 		guess_board[row][col] = MISS;
+}
+
+void Player::update_defeated() {
+	for (int i=0; i<NUM_SHIPS; i++) {
+		if (!ship_list[i].is_sunk()) {
+			is_defeated = false;
+			return;
+		}
+	}
+	
+	is_defeated = true;
 }

@@ -10,10 +10,15 @@ void Game::play() {
 	while (playing) {
 		human = Player(false);
 		AI = Player(true);
-		//while (!human->defeated() && !AI->defeated()) {
-			// STUFF AND THINGS
-		//}
-		while (1) human.take_turn(AI);
+		while (!human.defeated() && !AI.defeated()) {
+			if (!human.defeated()) 
+				human.take_turn(AI);
+			
+			if (!AI.defeated()) 
+				AI.take_turn(human);
+			
+		}
+
 		if (human.defeated()) {
 			cout << "You have lost...\n";
 		}
