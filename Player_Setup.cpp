@@ -20,6 +20,7 @@ Player::Player(bool is_AI) {
 }
 
 void Player::populate_ships() {
+	print_boards();
 	for (int ship=0; ship<NUM_SHIPS; ship++) {
 		set_ship(ship);
 		update_board(ship);
@@ -129,22 +130,16 @@ string Player::get_ship_name(int ship) {
 	switch (ship) {
 		case DESTROYER:
 			return "destroyer";
-			break;
 		case BATTLESHIP:
 			return "battleship";
-			break;
 		case SUBMARINE:
 			return "submarine";
-			break;
 		case AIRCRAFT_CAR:	
 			return "aircraft carrier";
-			break;
 		case PATROL_BOAT:
 			return "patrol boat";
-			break;
 		default:
 			return "";
-			break;
 	}
 }
 
@@ -210,11 +205,11 @@ bool Player::is_valid_placement(int ship, bool vert, int row, int col) {
 			break;
 		default:
 			return false;
-			break;
 	}
 
-	if (vert && !in_bounds(row+modifier, col)) return false;
-	else if (!vert && !in_bounds(row, col+modifier)) return false;
+	// these are modifier-1 to account for the way ships take up space
+	if (vert && !in_bounds(row+modifier-1, col)) return false;
+	else if (!vert && !in_bounds(row, col+modifier-1)) return false;
 	
 	for (int i=0; i<modifier; i++) {
 		if (vert && board[row+i][col] != EMPTY_POS) return false;

@@ -1,5 +1,5 @@
 CXX = clang++
-FLAGS = -Wall -g3 -pedantic -c
+FLAGS = -Wall -Wextra -g3 -pedantic -c
 RM = rm -f
 
 all: battleship
@@ -26,3 +26,5 @@ battleship: main.o Ship.o Player.o Game.o
 
 clean: 
 	${RM} battleship *.o
+
+rebuild: clean all
