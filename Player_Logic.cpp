@@ -32,7 +32,7 @@ void Player::human_turn(Player &player2) {
 
 		bool sunk = successful_hit(player2, row, col);
 		if (sunk) {
-			char marker = player2.board[row][col];
+			char marker = player2.get_marker(row, col);
 			int index = get_ship(marker);
 			string name = get_ship_name(index);
 			 
@@ -48,13 +48,27 @@ void Player::human_turn(Player &player2) {
 
 void Player::AI_turn(Player &player2) {
 	cerr << "AI turn\n";
-	int *row_p, *col_p;
-	build_probability(row_p, col_p);
+	build_probability();
 }
 
-void Player::build_probability(int *row_p, int *col_p) {
+void Player::build_probability() {
 	init_prob_board();
-	cerr << "done initializing probability\n";
+	for (int ship=0; ship<NUM_SHIPS; ship++) {
+		Ship new_ship = ship_list[ship];
+		update_prob(new_ship, true);
+		update_prob(new_ship, false);
+	}
+}
+
+void Player::update_prob(Ship new_ship, bool vert) {
+	int len = new_ship.get_len();
+	for (int i=0; i<BOARD_DIM; i++) {
+		for (int q=0; q<BOARD_DIM; q++) {
+			//if (is_valid_placement(new_ship, vert, i, q)) {
+			//	cerr << "valid\n";
+			//}
+		}
+	}
 }
 
 void Player::init_prob_board() {
@@ -78,6 +92,7 @@ void Player::update_own_hit(int row, int col) {
 void Player::update_guess(bool hit, int row, int col) {
 	if (hit)
 		guess_board[row][col] = HIT;
+
 	else if (guess_board[row][col] == EMPTY_POS)
 		guess_board[row][col] = MISS;
 }

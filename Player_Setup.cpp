@@ -16,6 +16,9 @@ Player::Player(bool is_AI) {
 	srand(time(NULL));
 
 	init_game_board();
+	if (comp_player) 
+		init_prob_board();
+
 	populate_ships();
 }
 
@@ -25,8 +28,7 @@ void Player::populate_ships() {
 		set_ship(ship);
 		update_board(ship);
 
-		//if (!comp_player) print_boards();
-		print_boards();
+		if (!comp_player) print_boards();
 	}
 }
 
@@ -59,7 +61,7 @@ void Player::set_ship(int cur_ship) {
 		row = get_ship_row();
 		col = get_ship_col();
 		if (!is_valid_placement(cur_ship, vert, row, col) &&
-			!comp_player)
+		    !comp_player)
 			cout << "\nINVALID PLACEMENT\n\n";
 	} while (!is_valid_placement(cur_ship, vert, row, col));
 
@@ -169,6 +171,10 @@ int Player::get_ship_col() {
 	else return rand() % BOARD_DIM;
 }
 
+char Player::get_marker(int row, int col) {
+	return board[row][col];
+}
+
 bool Player::ship_vertical() {
 	if (!comp_player) {
 		string response;
@@ -225,6 +231,7 @@ bool Player::in_bounds(int row, int col) {
 }
 
 void Player::print_boards() {
+	for (int i=0; i<100; i++) cout << "\n";
 	cout << "\nYour own board:";
 	cout << "\n  ";
 	for (int i=0; i<BOARD_DIM; i++)

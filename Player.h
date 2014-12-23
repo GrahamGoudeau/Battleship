@@ -49,13 +49,15 @@ private:
 	std::string get_ship_name(int ship);
 	int get_ship_row();
 	int get_ship_col();
+	char get_marker(int row, int col);
 	bool ship_vertical();
 	bool is_valid_placement(int ship, bool vert, int row, int col);
 	bool in_bounds(int row, int col);
 
 	void human_turn(Player &player2);
 	void AI_turn(Player &player2);
-	void build_probability(int *row_p, int *col_p);
+	void build_probability();
+	void update_prob(Ship new_ship, bool vert);
 
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);
