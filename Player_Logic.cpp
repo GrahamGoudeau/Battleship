@@ -53,7 +53,14 @@ void Player::AI_turn(Player &player2) {
 }
 
 void Player::build_probability(int *row_p, int *col_p) {
+	init_prob_board();
+	cerr << "done initializing probability\n";
+}
 
+void Player::init_prob_board() {
+	for (int i=0; i<BOARD_DIM; i++) 
+		for (int q=0; q<BOARD_DIM; q++)
+			prob_board[i][q] = 0;
 }
 
 bool Player::successful_hit(Player &player2, int row, int col) {

@@ -41,7 +41,8 @@ public:
 private:
 	void populate_ships();
 	void set_ship(int cur_ship);
-	void init_board();
+	void init_game_board();
+	void init_prob_board();
 	void update_board(int ship);
 	void print_boards();
 	int get_ship(char marker);
@@ -67,6 +68,7 @@ private:
 	std::vector<Ship> ship_list;	
 	char board[BOARD_DIM][BOARD_DIM];
 	char guess_board[BOARD_DIM][BOARD_DIM];
+	int prob_board[BOARD_DIM][BOARD_DIM];
 };
 
 #endif

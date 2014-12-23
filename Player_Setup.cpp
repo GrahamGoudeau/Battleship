@@ -15,7 +15,7 @@ Player::Player(bool is_AI) {
 	ship_list.resize(NUM_SHIPS);
 	srand(time(NULL));
 
-	init_board();
+	init_game_board();
 	populate_ships();
 }
 
@@ -98,7 +98,7 @@ void Player::set_ship(int cur_ship) {
 }
 
 
-void Player::init_board() {
+void Player::init_game_board() {
 	for (int i=0; i<BOARD_DIM; i++) {
 		for (int q=0; q<BOARD_DIM; q++) {
 			board[i][q] = EMPTY_POS;
