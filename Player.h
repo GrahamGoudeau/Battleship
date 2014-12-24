@@ -19,6 +19,11 @@ const int SUBMARINE_LEN 	= 3;
 const int AIRCRAFT_CAR_LEN 	= 5;
 const int PATROL_BOAT_LEN 	= 2;
 
+//used to give the impression of the AI taking time
+//makes gameplay more satisfying
+const bool AI_WAIT = true; 
+
+
 enum ship_t {
 	DESTROYER,
 	BATTLESHIP,
@@ -55,9 +60,8 @@ private:
 	bool in_bounds(int row, int col);
 
 	void human_turn(Player &player2);
-	void AI_turn(Player &player2);
+	void AI_turn(Player &player2, bool wait);
 	void build_probability();
-	void update_prob(Ship new_ship, bool vert);
 
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);

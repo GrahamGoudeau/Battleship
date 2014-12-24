@@ -13,7 +13,7 @@ void Player::take_turn(Player &player2) {
 	if (!comp_player)
 		human_turn(player2);
 	else
-		AI_turn(player2);
+		AI_turn(player2, AI_WAIT);
 
 	player2.update_defeated();
 }
@@ -41,35 +41,32 @@ void Player::human_turn(Player &player2) {
 		player2.update_own_hit(row, col);
 	}
 	else cout << "Miss!\n";
-	sleep(1);		
+	sleep(2);		
 
 	update_guess(hit, row, col);
 }
 
-void Player::AI_turn(Player &player2) {
-	cerr << "AI turn\n";
+void Player::AI_turn(Player &player2, bool wait) {
+	for (int i=0; i<100; i++) cout << "\n";
+	cout << "Computer taking turn:\n";
+	if (wait) sleep(1);
+	cout << "Computer building probability:\n";
 	build_probability();
+	if(wait) sleep(1);
+	cout << "Computer selecting most probable row/column:\n";
+	// select row/col
+	if (wait) sleep(1);
 }
 
 void Player::build_probability() {
 	init_prob_board();
+	bool vert = true;
+	bool horiz = false;
 	for (int ship=0; ship<NUM_SHIPS; ship++) {
 		Ship new_ship = ship_list[ship];
-		update_prob(new_ship, true);
-		update_prob(new_ship, false);
 	}
 }
 
-void Player::update_prob(Ship new_ship, bool vert) {
-	int len = new_ship.get_len();
-	for (int i=0; i<BOARD_DIM; i++) {
-		for (int q=0; q<BOARD_DIM; q++) {
-			//if (is_valid_placement(new_ship, vert, i, q)) {
-			//	cerr << "valid\n";
-			//}
-		}
-	}
-}
 
 void Player::init_prob_board() {
 	for (int i=0; i<BOARD_DIM; i++) 
