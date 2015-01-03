@@ -65,38 +65,35 @@ void Player::set_ship(int cur_ship) {
 			cout << "\nINVALID PLACEMENT\n\n";
 	} while (!is_valid_placement(cur_ship, vert, row, col));
 
+	int len, list_index;
 	switch (cur_ship) {
-		case DESTROYER: {
-			Ship destroyer(vert, DESTROYER_LEN);
-			destroyer.place_ship(row, col);
-			ship_list[DESTROYER] = destroyer;
+		case DESTROYER:
+			len = DESTROYER_LEN;
+			list_index = DESTROYER;
 			break;
-		}
-		case BATTLESHIP: {
-			Ship battleship(vert, BATTLESHIP_LEN);
-			battleship.place_ship(row, col);
-			ship_list[BATTLESHIP] = battleship;
+	
+		case BATTLESHIP:
+			len = BATTLESHIP_LEN;
+			list_index = BATTLESHIP;
 			break;
-		}
-		case SUBMARINE: {
-			Ship submarine(vert, SUBMARINE_LEN);
-			submarine.place_ship(row, col);
-			ship_list[SUBMARINE] = submarine;
+		case SUBMARINE:
+			len = SUBMARINE_LEN;
+			list_index = SUBMARINE;
 			break;
-		}
-		case AIRCRAFT_CAR: {
-			Ship aircraft_car(vert, AIRCRAFT_CAR_LEN);
-			aircraft_car.place_ship(row, col);
-			ship_list[AIRCRAFT_CAR] = aircraft_car;
+		case AIRCRAFT_CAR:
+			len = AIRCRAFT_CAR_LEN;
+			list_index = AIRCRAFT_CAR;
 			break;
-		}
-		case PATROL_BOAT: {
-			Ship patrol_boat(vert, PATROL_BOAT_LEN);	
-			patrol_boat.place_ship(row, col);
-			ship_list[PATROL_BOAT] = patrol_boat;
+		case PATROL_BOAT:
+			len = PATROL_BOAT_LEN;
+			list_index = PATROL_BOAT;
 			break;
-		}
+		
 	}
+
+	Ship new_ship = Ship(vert, len);
+	new_ship.place_ship(row, col);
+	ship_list[list_index] = new_ship;
 }
 
 
