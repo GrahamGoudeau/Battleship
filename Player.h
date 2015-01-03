@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
-#include "Ship_Meta.h"
+#include "Ship.h"
 
 const int BOARD_DIM 	= 10;
 const int NUM_SHIPS 	= 5;

@@ -12,8 +12,8 @@ all: battleship
 main.o: main.cpp
 	${CXX} ${FLAGS} main.cpp -o $@
 
-Ship.o: Ship_Meta.h Ship_Meta.cpp
-	${CXX} ${FLAGS} Ship_Meta.cpp -o $@
+Ship.o: Ship.h Ship.cpp
+	${CXX} ${FLAGS} Ship.cpp -o $@
 
 Setup.o: Player.h Player_Setup.cpp 
 	${CXX} ${FLAGS} Player_Setup.cpp -o $@ 
