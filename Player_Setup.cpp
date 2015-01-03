@@ -120,7 +120,7 @@ int Player::get_ship(char marker) {
 		case 'p':
 			return PATROL_BOAT;
 		default:
-			return 0;
+			return -1;
 	}
 }
 
