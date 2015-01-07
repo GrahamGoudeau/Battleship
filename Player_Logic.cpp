@@ -64,9 +64,48 @@ void Player::build_probability() {
 	bool horiz = false;
 	for (int ship=0; ship<NUM_SHIPS; ship++) {
 		Ship new_ship = ship_list[ship];
+		superposition(new_ship,vert);
+		superposition(new_ship,horiz);
+	}
+	for (int i=0;i<BOARD_DIM;i++) {
+		for (int q=0; q<BOARD_DIM; q++)
+			cout << prob_board[i][q];
+		cout << endl;
 	}
 }
 
+
+void Player::superposition(Ship ship, bool orientation) {
+	bool vert = orientation;
+	for (int row=0; row<BOARD_DIM; row++) {
+		for (int col=0; col<BOARD_DIM; col++) {
+			if (check_possible(ship, vert, row, col)) 
+				update_prob(ship, vert, row, col);
+				
+		}
+	}
+}
+
+bool Player::check_possible(Ship ship, bool vert, int row, int col) {
+	int length = ship.get_len();
+	if (guess_board[row][col] != EMPTY_POS) return false;
+	if (vert && (row + length >= BOARD_DIM)) return false;
+	if (!vert && (col + length >= BOARD_DIM)) return false;
+
+	for (int i=0; i<BOARD_DIM; i++) {
+		for (int q=0; q<BOARD_DIM; q++) {
+			if (guess_board[row][col] == MISS)
+				return false;
+			else if (guess_board[row][col] == HIT) {
+				for (int adj = -1; adj <= 1; adj++) {}
+			}
+		}
+	}
+}
+
+void Player::update_prob(Ship ship, bool vert, int row, int col) {
+	cerr << "UPDATE PROB\n";
+}
 
 void Player::init_prob_board() {
 	for (int i=0; i<BOARD_DIM; i++) 

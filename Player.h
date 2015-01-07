@@ -36,11 +36,16 @@ enum ship_t {
 class Player {
 
 public:
+	// default constructor; not used by Game
 	Player();
+	// constructor used to set if it is a computer player
 	Player(bool is_AI);
 	
+	// gets guess row/col, updates whether player2 is defeated
 	void take_turn(Player &player2);
+	// checks if (x,y) is a ship space on own board
 	bool is_hit(int x, int y);
+	// returns true if all ships report being sunk
 	bool defeated() {return is_defeated;}
 
 private:
@@ -62,6 +67,9 @@ private:
 	void human_turn(Player &player2);
 	void AI_turn(Player &player2, bool wait);
 	void build_probability();
+	void superposition(Ship ship, bool orientation);
+	bool check_possible(Ship ship, bool vert, int row, int col);
+	void update_prob(Ship ship, bool vert, int row, int col);
 
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);
