@@ -21,7 +21,7 @@ const int PATROL_BOAT_LEN 	= 2;
 
 //used to give the impression of the AI taking time
 //makes gameplay more satisfying
-const bool AI_WAIT = true; 
+const bool AI_WAIT = true;
 
 
 enum ship_t {
@@ -38,13 +38,16 @@ class Player {
 public:
 	// default constructor; not used by Game
 	Player();
+
 	// constructor used to set if it is a computer player
 	Player(bool is_AI);
 	
 	// gets guess row/col, updates whether player2 is defeated
 	void take_turn(Player &player2);
+
 	// checks if (x,y) is a ship space on own board
 	bool is_hit(int x, int y);
+
 	// returns true if all ships report being sunk
 	bool defeated() {return is_defeated;}
 
@@ -52,6 +55,8 @@ private:
 	void populate_ships();
 	void set_ship(int cur_ship);
 	void init_game_board();
+	
+	// AI function
 	void init_prob_board();
 	void update_board(int ship);
 	void print_boards();
@@ -65,11 +70,10 @@ private:
 	bool in_bounds(int row, int col);
 
 	void human_turn(Player &player2);
+	// AI function
 	void AI_turn(Player &player2, bool wait);
+	// AI function
 	void build_probability();
-	void superposition(Ship ship, bool orientation);
-	bool check_possible(Ship ship, bool vert, int row, int col);
-	void update_prob(Ship ship, bool vert, int row, int col);
 
 	bool successful_hit(Player &player2, int row, int col);	
 	void update_own_hit(int row, int col);

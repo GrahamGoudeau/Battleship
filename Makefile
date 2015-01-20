@@ -2,12 +2,8 @@ CXX = clang++
 FLAGS = -Wall -Wextra -g3 -pedantic -c
 RM = rm -f
 
-all: battleship
 
-#battleship: main.cpp Ship_Meta.h Game.h Player.h \
-		Ship_Meta.cpp Game.cpp Player_Setup.cpp
-#	${CXX} ${FLAGS} -o battleship main.cpp Game.cpp Player_Setup.cpp \
-				Ship_Meta.cpp 
+all: battleship
 
 main.o: main.cpp
 	${CXX} ${FLAGS} main.cpp -o $@

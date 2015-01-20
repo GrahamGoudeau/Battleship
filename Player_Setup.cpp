@@ -177,11 +177,11 @@ bool Player::ship_vertical() {
 		string response;
 		do {
 			cout << "Is this ship  placed vertically?\n";
-			cout << "    ('y' for vertical, 'n' for horizontal)\n";
+			cout << "    ('v' for vertical, 'h' for horizontal)\n";
 			cin >> response;
-		} while (response != "y" && response != "n");
+		} while (response != "v" && response != "h");
 
-		return response == "y" || response == "Y";	
+		return response == "v";	
 	}
 	else return (rand() % 100) < 50; // 50/50 chance
 }
